@@ -1,2 +1,26 @@
-# ng-layer
-对layer.js的angular封装，同时增加异步载入content功能
+# 概述
+对[layer](http://layer.layui.com/)的angular封装，同时增加异步载入content的功能
+
+# 使用
+1. 引入layer自身，再引入ng-layer
+
+2. 注册模块
+
+```js
+angular.module('app', ['ng-layer']);
+```
+
+3. 使用
+
+```js
+var layerId = layer.open({
+    contentUrl: 'modules/home/index.html',  // 额外增加的方法，正如其名，当然也还可以用content
+    scope     : $scope  // 当前content环境中的$scope
+});
+
+// layer.close(layerId); 
+```
+
+
+# 依赖&兼容
+当然还需要引入layer本身，理论上支持任何版本的layer，除非layer更改了核心功能

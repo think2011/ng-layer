@@ -1,7 +1,7 @@
-# 概述
+## 概述
 对[layer](http://layer.layui.com/)的angular封装，同时增加异步载入content的功能
 
-# 使用
+## 使用
 1. 引入layer自身，再引入ng-layer
 
 2. 注册模块
@@ -22,5 +22,5 @@ var layerId = layer.open({
 ```
 
 
-# 依赖&兼容
-当然还需要引入layer本身，理论上支持任何版本的layer，除非layer更改了核心功能
+## 兼容
+理论上支持任何版本的layer，除非layer更改了核心功能

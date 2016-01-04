@@ -1,5 +1,7 @@
 {
   "name": "ng-layer",
+  "version": "1.0.0",
+  "main": "ng-layer.js",
   "homepage": "https://github.com/think2011/ng-layer",
   "authors": [
     "think2011 <452125301@qq.com>"

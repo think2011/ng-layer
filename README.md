@@ -6,15 +6,15 @@
 2. 当然也可以直接复制 `ng-layer.js` 文件
 
 ## 使用
-1. 引入layer自身，再引入ng-layer
+①. 引入layer自身，再引入ng-layer
 
-2. 注册模块
+②. 注册模块
 
 ```js
 angular.module('app', ['ng-layer']);
 ```
 
-3. 使用
+③. 使用
 
 ```js
 var layerId = layer.open({

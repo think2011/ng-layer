@@ -1,6 +1,9 @@
 ## 概述
 对[layer](http://layer.layui.com/)的angular封装，同时增加异步载入content的功能
 
+## 下载
+1. 推荐使用 bower install ng-layer
+
 ## 使用
 1. 引入layer自身，再引入ng-layer
 

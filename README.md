@@ -38,7 +38,7 @@ var layerId = layer.open({
 // layer.close(layerId);
 ```
 
-[具体可以查看demo文件](think2011.net/ng-layer)
+[具体可以查看demo文件](http://think2011.net/ng-layer)
 
 ## 兼容
 理论上支持任何版本的layer，除非layer更改了核心功能

@@ -16,15 +16,29 @@ angular.module('app', ['ng-layer']);
 
 ③. 使用
 
+支持标准方式 和 controller as方式(感谢@wandergis)
+
+标准方式
 ```js
 var layerId = layer.open({
-    contentUrl: 'modules/home/index.html',  // 额外增加的方法，正如其名，当然也还可以用content
-    scope     : $scope  // 当前content环境中的$scope
+    contentUrl: 'modules/home/index.html',  // 额外增加的方法，正如其名
+    scope: $scope
 });
 
 // layer.close(layerId); 
 ```
 
+controller as方式
+```js
+var layerId = layer.open({
+    // contentUrl: 'modules/home/index.html'，当然也还可以用原来的content
+    content: '<div controller="appCtrl as vm">{{vm.name}}</div>'
+});
+
+// layer.close(layerId);
+```
+
+[具体可以查看demo文件](think2011.net/ng-layer)
 
 ## 兼容
 理论上支持任何版本的layer，除非layer更改了核心功能

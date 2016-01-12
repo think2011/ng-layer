@@ -9,13 +9,12 @@
      * @example
      * // 所有options均支持以下contentUrl & scope
      * layer.open({
-     *      contentUrl: 'modules/home/index.html',
-     *      scope     : $scope
+     *      contentUrl: 'modules/home/index.html'
      * });
      *
      * @returns layer
      */
-    function layer ($compile, $q, $http) {
+    function layer ($rootScope,$compile, $q, $http) {
         var layer  = window.layer;
         var _open  = layer.open;
         var _close = layer.close;
@@ -38,16 +37,11 @@
 
             return defer.promise.then(function (content) {
                 deliver.content = content || deliver.content;
-
                 var oldOpen  = _open(deliver);
                 var $el      = $('#layui-layer' + oldOpen);
                 var $content = $el.find('.layui-layer-content');
-                var $scope   = deliver.scope;
-
-                if ($scope) {
-                    $content.replaceWith($compile($content[0].outerHTML)($scope));
-                }
-
+                //去掉scope参数，改用$rootScope
+                $content.replaceWith($compile($content[0].outerHTML)($rootScope));
                 return oldOpen;
             });
         };

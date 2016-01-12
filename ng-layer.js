@@ -15,7 +15,7 @@
      *
      * @returns layer
      */
-    function layer ($rootScope, $compile, $q, $http) {
+    function layer ($rootScope, $compile, $timeout, $q, $http) {
         var layer  = window.layer;
         var _open  = layer.open;
         var _close = layer.close;
@@ -45,7 +45,11 @@
                 var injectScope = deliver.scope || $rootScope.$new();
 
                 $content.replaceWith($compile($content[0].outerHTML)(injectScope));
-
+                
+                $timeout(function () {
+                    $(window).resize();
+                });
+                
                 return oldOpen;
             });
         };

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="appCtrl">
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/layer-v2.1/layer/layer.js"></script>
+<script src="ng-layer.js"></script>
+<script>
+    angular
+            .module('app', ['ng-layer'])
+            .controller('appCtrl', function ($scope, layer) {
+                // controller as 调用方法
+                layer.open({
+                    type   : 1,
+                    area   : ['420px', '240px'],
+                    content: '<div ng-controller="layerCtrl as vm">controller as: {{vm.hello}}</div>'
+                });
+
+                // 标准方式
+                $scope.hello = '$scope: hello world!';
+                layer.open({
+                    type   : 1,
+                    area   : ['420px', '240px'],
+                    content: '<div>{{hello}}</div>',
+                    scope  : $scope
+                });
+            })
+            .controller('layerCtrl', function () {
+                this.hello = 'hello world!';
+            })
+</script>
+</body>
+</html>

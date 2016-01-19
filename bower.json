@@ -7,7 +7,6 @@
     "think2011 <452125301@qq.com>"
   ],
   "description": "对layer的angular封装，同时增加异步载入content的功能",
-  "main": "ng-layer.js",
   "moduleType": [],
   "license": "MIT",
   "ignore": [

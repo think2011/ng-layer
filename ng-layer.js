@@ -9,16 +9,17 @@
      * @example
      * // 所有options均支持以下contentUrl & scope
      * layer.open({
-     *      contentUrl: 'modules/home/index.html',
-     *      scope     : $scope
+     *      contentUrl: 'modules/home/index.html'
+     *      scope: $scope // 如果使用的是 controller as 语法, 可以不传入这个参数
      * });
      *
      * @returns layer
      */
-    function layer ($compile, $q, $http) {
+    function layer ($rootScope, $compile, $timeout, $q, $http) {
         var layer  = window.layer;
         var _open  = layer.open;
         var _close = layer.close;
+        var _full  = layer.full;
 
         // 装饰open
         layer.open = function (deliver) {
@@ -37,16 +38,18 @@
             }
 
             return defer.promise.then(function (content) {
-                deliver.content = content || deliver.content;
+                deliver.content = content || deliver.content || '';
 
-                var oldOpen  = _open(deliver);
-                var $el      = $('#layui-layer' + oldOpen);
-                var $content = $el.find('.layui-layer-content');
-                var $scope   = deliver.scope;
+                var oldOpen     = _open(deliver);
+                var $el         = $('#layui-layer' + oldOpen);
+                var $content    = $el.find('.layui-layer-content');
+                var injectScope = deliver.scope || $rootScope.$new();
 
-                if ($scope) {
-                    $content.replaceWith($compile($content[0].outerHTML)($scope));
-                }
+                $content.replaceWith($compile($content[0].outerHTML)(injectScope));
+
+                $timeout(function () {
+                    $(window).resize();
+                });
 
                 return oldOpen;
             });
@@ -56,6 +59,13 @@
         layer.close = function (index) {
             $q.when(index).then(function (index) {
                 _close(index);
+            })
+        };
+
+        // 装饰full
+        layer.full = function (index) {
+            $q.when(index).then(function (index) {
+                _full(index);
             })
         };
 
